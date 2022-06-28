@@ -1,0 +1,225 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Ribeye&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Quicksand", sans-serif;
+  color: #393939;
+  scroll-behavior: smooth;
+}
+
+#gatsby-focus-wrapper main {
+  animation: fade-in 0.3s linear;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+.pizza-image {
+  max-width: 150px;
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.grid-container-1rows,
+.grid-container-2rows,
+.grid-container-3rows {
+  display: grid;
+  gap: 1rem;
+}
+
+.cart-add {
+  width: 60px;
+  height: 100%;
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f47621;
+  animation: fade-in 0.2s ease-in;
+}
+
+/* Sticky menu */
+#sticky-menu {
+  display: none;
+  float: left;
+  width: 220px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  background: url("../images/sticky-background.png");
+  background-size: cover;
+  background-position: right;
+  animation: fade-in 0.3s ease-in;
+}
+
+.hide {
+  display: none !important;
+}
+
+.sticky-container {
+  height: 100%;
+  padding: 2rem;
+  display: grid;
+  place-items: center;
+  gap: 2rem;
+  overflow: auto;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.sticky-container::after {
+  content: "";
+  width: 80px;
+  height: 80px;
+  background: url("../images/scroll.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 25px;
+  filter: brightness(0) invert(1);
+}
+
+/* Order modal */
+#pizzaPicker {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  transition: all 0.3s ease-in;
+  animation: fade-in 0.2s ease-in;
+}
+
+/* Pizza button */
+#additionalCost::before {
+  width: 100%;
+  content: "+ 3,00€";
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #393939;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+/* Drawer */
+#drawer {
+  animation: drawer-in 0.3s ease-in;
+}
+
+#bottom-cart {
+  animation: fade-in 0.3s ease-in;
+}
+
+@media screen and (min-width: 500px) {
+  .pizza-image {
+    max-width: 165px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .grid-container-2rows,
+  .grid-container-3rows {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  .grid-container-1rows {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  #pizzaPicker {
+    left: 50%;
+    bottom: 50%;
+    transform: translate(-50%, 50%);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .pizza-image {
+    max-width: 200px;
+  }
+  .grid-container-3rows {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  #sticky-menu {
+    display: block;
+  }
+
+  .sticky-container img {
+    filter: brightness(0) invert(1);
+  }
+
+  .show {
+    display: block !important;
+  }
+}
+
+@media screen and (min-height: 920px) {
+  #sticky-menu {
+    width: 200px;
+  }
+
+  .sticky-container::after {
+    width: 0;
+    height: 0;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  #pizzaPicker {
+    height: 100%;
+  }
+}
+
+/* ANIMATIONS */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes drawer-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

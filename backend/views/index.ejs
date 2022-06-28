@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <%- include('./partials/header.ejs') %>
+    <section class="max-w-screen-xxl mx-auto p-5">
+      <div class="my-5 flex justify-between items-center flex-wrap">
+        <h1 class="text-3xl">Objednávky</h1>
+        <div class="w-full md:w-fit my-5 flex justify-between items-center">
+          <a href="/"
+            ><i
+              class="mr-5 text-2xl text-main-orange fa-solid fa-arrow-rotate-right cursor-pointer"
+            ></i
+          ></a>
+          <input
+            class="min-w-[300px] p-2 border-2 border-gray-500 rounded-md"
+            type="text"
+            placeholder="Nájsť"
+          />
+        </div>
+      </div>
+      <ul class="grid-container">
+        <% orders.forEach(order => { %>
+        <li
+          class="p-5 w-full flex justify-between items-start flex-wrap border-2 border-gray-ad rounded-md shadow-md order"
+        >
+          <div class="max-w-[60%] flex flex-col justify-between items-start">
+            <div>
+              <h5 class="text-2xl font-semibold">
+                ID objednávky: <span class="order-id"><%=order.id %></span>
+              </h5>
+              <h6><%=order.date %></h6>
+            </div>
+            <ul class="w-full my-5">
+              <% order.products.forEach(product => { %>
+              <li class="py-2 border-b-2 border-gray-200 text-lg cursor-pointer product">
+                <%=product.name %> <span class="font-semibold"><%=product.amount %>x</span>
+              </li>
+              <% }) %>
+            </ul>
+            <button class="px-5 py-2 rounded-md bg-main-green text-white" id="<%=order.id %>">
+              Hotovo
+            </button>
+          </div>
+          <div class="flex flex-col items-center gap-5">
+            <h4 class="p-2 bg-main-orange rounded-md text-white text-4xl md:text-6xl">
+              <%=order.price %>€
+            </h4>
+            <p class="text-lg font-semibold">
+              <%=order.delivery ? 'S donáškou' : 'Bez donášky'%></span>
+            </p>
+          </div>
+        </li>
+        <% }) %>
+      </ul>
+    </section>
+
+    <script src="/index_script.js"></script>
+  </body>
+</html>
